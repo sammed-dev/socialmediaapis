@@ -29,23 +29,25 @@ public class MessageService {
 		}
 //		
 //		//post a message
-//		public Message addMessage(Message message) {
-//			message.setId(messages.size()+1);
-//			messages.put(message.getId(), message);
-//			return message;
-//		}
+		public Message addMessage(Message message) {
+			message.setId(messages.size()+1L);
+			messages.put(message.getId(), message);
+			return message;
+		}
 //		
 //		//update a message
-//		public Message updateMessage(Message message) {
-//			if(message.getId() <0)
-//				return null;
-//			messages.put(message.getId(), message);
-//			return message;
-//		}
+		public Message updateMessage(Message message) {
+			if(message.getId() <0)
+				return null;
+			message.setMessage(message.getMessage());
+			message.setAuthor(message.getAuthor());
+			messages.put(message.getId(), message);
+			return message;
+		}
 //		
 //		//post a message
-//		public void deleteMessage(Long id) {
-//			messages.remove(id);
-//		}
+		public void deleteMessage(Long id) {
+			messages.remove(id);
+		}
 
 }
