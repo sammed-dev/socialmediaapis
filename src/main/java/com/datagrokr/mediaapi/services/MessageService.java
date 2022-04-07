@@ -24,9 +24,9 @@ public class MessageService {
 		}
 		
 //		//to return single message:
-//		public Message getMessage(Long id) {
-//			return messages.get(id);
-//		}
+		public Message getMessage(Long id) {
+			return messages.get(id);
+		}
 //		
 //		//post a message
 //		public Message addMessage(Message message) {

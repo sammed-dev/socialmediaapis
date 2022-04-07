@@ -8,6 +8,7 @@ import com.datagrokr.mediaapi.services.MessageService;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
@@ -18,7 +19,15 @@ public class MessageResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Message> getMessage() {
+	public List<Message> getMessages() {
 		return messageService.getAllMessages();
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{id}")
+	public Message getMessageById(@PathParam("id") Long id) {
+		return messageService.getMessage(id);
+	}
+	
 }
