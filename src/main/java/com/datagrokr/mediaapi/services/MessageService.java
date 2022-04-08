@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.datagrokr.mediaapi.exceptions.ResourceNotFound;
 import com.datagrokr.mediaapi.localdatabase.MessageDatabase;
 import com.datagrokr.mediaapi.model.Message;
 
@@ -50,6 +51,9 @@ public class MessageService {
 		
 //		//to return single message:
 		public Message getMessage(Long id) {
+			Message message = messages.get(id);
+			if(message == null)
+				throw new ResourceNotFound("message with id :"+id+"dosent exist");
 			return messages.get(id);
 		}
 //		
