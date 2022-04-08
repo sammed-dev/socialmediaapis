@@ -39,6 +39,15 @@ public class MessageService {
 			return results;
 		}
 		
+		public List<Message> getMessagesPaginate(Long start, Long size){
+			List<Message> result = new ArrayList<Message>();
+			
+			for(int i=0;i<size;i++) {
+				result.add(messages.get(i));
+			}
+			return result;
+		}
+		
 //		//to return single message:
 		public Message getMessage(Long id) {
 			return messages.get(id);

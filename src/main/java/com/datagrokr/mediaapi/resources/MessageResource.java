@@ -33,6 +33,13 @@ public class MessageResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/page")
+	public List<Message> paginateMessages(@QueryParam("start") Long start, @QueryParam("size") Long size){
+		return messageService.getMessagesPaginate(start,size);
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
 	public Message getMessageById(@PathParam("id") Long id) {
 		return messageService.getMessage(id);
