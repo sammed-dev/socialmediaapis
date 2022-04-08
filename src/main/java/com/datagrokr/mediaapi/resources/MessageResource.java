@@ -1,5 +1,6 @@
 package com.datagrokr.mediaapi.resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +48,17 @@ public class MessageResource {
 	@Path("all/{id}")
 	public Message getMessageById(@PathParam("id") Long id, @Context UriInfo uriInfo) {
 		Message message = messageService.getMessage(id);
-		String uri = getUriForSelf(uriInfo, message);
-		message.addLink(uri, "self");
-		
+		message.addLink(getUriForSelf(uriInfo, message), "self");
+		message.addLink(getUriForProfile(uriInfo, message), "profile");
 		return message;
+	}
+
+	private String getUriForProfile(UriInfo uriInfo, Message message) {
+		URI uri = uriInfo.getBaseUriBuilder()
+				.path(ProfileResource.class)
+				.path(message.getAuthor())
+				.build();
+		return uri.toString();
 	}
 
 	private String getUriForSelf(UriInfo uriInfo, Message message) {
