@@ -16,10 +16,10 @@ public class MessageService {
 	public MessageService() {
 		messages.put(1L, new Message(1L,"first", "sammed"));
 		messages.put(2L, new Message(2L,"second", "shreyank"));
-		messages.put(3L, new Message(1L,"third", "sammed"));
-		messages.put(4L, new Message(2L,"forth", "shreyank"));
-		messages.put(5L, new Message(1L,"fifth", "sammed"));
-		messages.put(6L, new Message(2L,"sixth", "shreyank"));
+		messages.put(3L, new Message(3L,"third", "sammed"));
+		messages.put(4L, new Message(4L,"forth", "shreyank"));
+		messages.put(5L, new Message(5L,"fifth", "sammed"));
+		messages.put(6L, new Message(6L,"sixth", "shreyank"));
 	}
 	
 	

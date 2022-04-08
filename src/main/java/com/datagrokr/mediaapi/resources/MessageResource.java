@@ -42,7 +42,7 @@ public class MessageResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/{id}")
+	@Path("all/{id}")
 	public Message getMessageById(@PathParam("id") Long id) {
 		return messageService.getMessage(id);
 	}
