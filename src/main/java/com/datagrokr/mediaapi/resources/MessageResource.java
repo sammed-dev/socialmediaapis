@@ -15,9 +15,11 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import jakarta.ws.rs.core.UriInfo;
 
 @Path("messages")
 public class MessageResource {
@@ -43,8 +45,16 @@ public class MessageResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("all/{id}")
-	public Message getMessageById(@PathParam("id") Long id) {
-		return messageService.getMessage(id);
+	public Message getMessageById(@PathParam("id") Long id, @Context UriInfo uriInfo) {
+		Message message = messageService.getMessage(id);
+		String uri = uriInfo.getBaseUriBuilder()
+				.path(MessageResource.class)
+				.path(Long.toString(message.getId()))
+				.build()
+				.toString();
+		message.addLink(uri, "self");
+		
+		return message;
 	}
 	
 	@POST
