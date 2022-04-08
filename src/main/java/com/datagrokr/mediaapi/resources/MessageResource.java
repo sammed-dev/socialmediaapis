@@ -14,6 +14,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("messages")
@@ -24,7 +25,9 @@ public class MessageResource {
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Message> getMessages() {
+	public List<Message> getMessages(@QueryParam("author") String author) {
+		if(author !=null)
+			return messageService.getAllMessagesByAuthor(author);
 		return messageService.getAllMessages();
 	}
 	
