@@ -70,4 +70,10 @@ public class MessageResource {
 		messageService.deleteMessage(id);
 	}
 	
+	
+	@Path("/{id}/comments")
+	public CommentResource getComment() {
+		return new CommentResource();
+	}
+	
 }
