@@ -11,4 +11,10 @@ public class CommentResource {
 		return "test";
 	}
 	
+	@GET
+	@Path("/{id}")
+	public String getCommentById() {
+		return "comment with Id :";
+	}
+	
 }
