@@ -1,5 +1,7 @@
 package com.datagrokr.mediaapi.exceptions;
 
+import com.datagrokr.mediaapi.model.ErrorMessage;
+
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.ext.ExceptionMapper;
@@ -10,7 +12,10 @@ public class ResourceNotFoundExceptionMapper implements ExceptionMapper<Resource
 
 	@Override
 	public Response toResponse(ResourceNotFound exception) {
-		return Response.status(Status.NOT_FOUND).build();
+		ErrorMessage errorMessage = new ErrorMessage(exception.getMessage(), 404L,"www.javabrains.com"); 
+		return Response.status(Status.NOT_FOUND)
+				.entity(errorMessage)
+				.build();
 	}
 
 }
