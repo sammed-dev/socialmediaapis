@@ -16,6 +16,8 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @Path("messages")
 public class MessageResource {
@@ -49,8 +51,12 @@ public class MessageResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/addmessage")
-	public Message postMessage(Message message) {
-		return messageService.addMessage(message);
+	public Response postMessage(Message message) {
+		Message message2 =  messageService.addMessage(message);
+		return Response.status(Status.CREATED)
+				.entity(message2)
+				.build();
+//		return messageService.addMessage(message);
 	}
 	
 	@PUT
