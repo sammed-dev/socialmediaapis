@@ -22,6 +22,7 @@ public class MessageResource {
 	MessageService messageService = new MessageService();
 
 	@GET
+	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
